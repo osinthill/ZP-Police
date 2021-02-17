@@ -10,7 +10,7 @@
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
   <meta charset="utf-8">
-  
+
   <title>Carte des zones de police en Belgique</title>
 
 
@@ -45,15 +45,15 @@
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Les zones de Police</h4>' +  (props ?
-			'<b>' + props.Name + '</b><br />' + props.ZP 
+			'<b>' + props.Name + '</b><br />' + props.ZP
 			: 'Cliquer sur une zone de Police <br/>pour voir les détails.');
 	};
 
 	info.addTo(map);
-	
 
-	
-	
+
+
+
 
 	// get color depending on ZP
 	function getColor(d) {
@@ -114,27 +114,43 @@
 				d == 5346   ? '#6de561' :
 				d == 5347   ? '#9a76a0' :
 				d == 5348   ? '#5ac34a' :
-				d == 5349   ? '#387bda' : 
-                d == 5350   ? '#129d88' :
-                d == 5351   ? '#9d2d87' :
-                d == 5352   ? '#48d389' :
-                d == 5353   ? '#7b8630' :
-                d == 5354   ? '#4a1fbb' :
-                d == 5355   ? '#ae7478' :
-                d == 5356   ? '#cbf6b8' :
-                d == 5358   ? '#70a2db' :
-                d == 5359   ? '#e5ad25' :
-                d == 5360   ? '#df943e' :
-                d == 5361   ? '#1b4e73' :
-                d == 5362   ? '#8fcb50' :
-                d == 5363   ? '#877e97' :
-                d == 5364   ? '#0c04bd' :
-                d == 5365   ? '#f98575' :
-                d == 5366   ? '#629913' :
-                d == 5367   ? '#203c31' :
-                d == 5368   ? '#91f94e' :
-                d == 5369   ? '#5d7d85' :
-                d == 5906   ? '#96454f' :
+				d == 5349   ? '#387bda' :
+        d == 5350   ? '#129d88' :
+        d == 5351   ? '#9d2d87' :
+        d == 5352   ? '#48d389' :
+        d == 5353   ? '#7b8630' :
+        d == 5354   ? '#4a1fbb' :
+        d == 5355   ? '#ae7478' :
+        d == 5356   ? '#cbf6b8' :
+        d == 5358   ? '#70a2db' :
+        d == 5359   ? '#e5ad25' :
+        d == 5360   ? '#df943e' :
+        d == 5361   ? '#1b4e73' :
+        d == 5362   ? '#8fcb50' :
+        d == 5363   ? '#877e97' :
+        d == 5364   ? '#0c04bd' :
+        d == 5365   ? '#f98575' :
+        d == 5366   ? '#629913' :
+        d == 5367   ? '#203c31' :
+        d == 5368   ? '#91f94e' :
+        d == 5369   ? '#5d7d85' :
+        d == 5906   ? '#96454f' :
+        d == 5297   ? '#02c8c8' :
+        d == 5298   ? '#8ca68a' :
+        d == 5299   ? '#ff0260' :
+        d == 5300   ? '#34e2b6' :
+        d == 5301   ? '#f34f2c' :
+        d == 5302   ? '#3db72f' :
+        d == 5339   ? '#d6fc0e' :
+        d == 5340   ? '#464af5' :
+        d == 5341   ? '#910afa' :
+        d == 5342   ? '#8ddaf6' :
+        d == 5343   ? '#129af0' :
+        d == 5344   ? '#7f8a41' :
+        d == 5371   ? '#40534f' :
+        d == 5372   ? '#81451f' :
+
+
 							'#FFEDA0';
 	}
 
@@ -190,10 +206,10 @@
 			style: style,
 				onEachFeature: onEachFeature,
 		  onEachFeature: function (feature, layer) {
-		    layer.bindPopup('<h1>'+feature.properties.ZP+'</h1><ul><li>Commune: '+feature.properties.Name+'</li><li>Code: '+feature.properties.arrond+'</li><li><a href=https://police.be/'+feature.properties.arrond+'>Site web</a></li>');
+		    layer.bindPopup('<h1>'+feature.properties.ZP+'</h1><ul><li>Commune: '+feature.properties.Name+'</li><li>Code: '+feature.properties.arrond+'</li><li><a href=https://police.be/'+feature.properties.arrond+'>Site web</a></li></ul><br/>');
 		  }
 	}).addTo(map);
-	
+
 	map.attributionControl.addAttribution('Author &copy; <a href="https://nthill.be">nthill.be</a>');
 
   </script>
