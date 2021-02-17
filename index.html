@@ -1,0 +1,202 @@
+
+<html>
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+  <meta charset="utf-8">
+  
+  <title>Carte des zones de police en Belgique</title>
+
+
+
+</head>
+
+<body>
+	<div id="map"></div>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script>
+  	var map = L.map('map').setView([50.84673, 4.35247], 7);
+  	map.createPane('labels');
+  	map.getPane('labels').style.zIndex = 650;
+  	map.getPane('labels').style.pointerEvents = 'none';
+
+		L.tileLayer('https://tile.openstreetmap.be/osmbe-fr/{z}/{x}/{y}.png', {
+		  attribution:
+		    '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors' +
+		    ', Tiles courtesy of <a href="https://geo6.be/">GEO-6</a>',
+		  maxZoom: 18
+		}).addTo(map);
+
+
+	// control that shows state info on hover
+	var info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+		this._div.innerHTML = '<h4>Les zones de Police</h4>' +  (props ?
+			'<b>' + props.Name + '</b><br />' + props.ZP 
+			: 'Cliquer sur une zone de Police <br/>pour voir les détails.');
+	};
+
+	info.addTo(map);
+	
+
+	
+	
+
+	// get color depending on ZP
+	function getColor(d) {
+		return d == 5267 ? '#FFEDA0' :
+				d == 5268  ? '#5dd7bb' :
+				d == 5269  ? '#8f4814' :
+				d == 5270  ? '#FC4E2A' :
+				d == 5271   ? '#FD8D3C' :
+				d == 5272   ? '#FEB24C' :
+				d == 5273   ? '#18de22' :
+				d == 5274   ? '#37f384' :
+				d == 5275   ? '#b71d8f' :
+				d == 5276   ? '#dd7f7b' :
+				d == 5277   ? '#71c2f7' :
+				d == 5278   ? '#4007b3' :
+				d == 5279   ? '#d28f4b' :
+				d == 5280   ? '#32774f' :
+				d == 5281   ? '#6e9626' :
+				d == 5282   ? '#493ebb' :
+				d == 5283   ? '#aee18a' :
+				d == 5284   ? '#35b783' :
+				d == 5285   ? '#9a8897' :
+				d == 5286   ? '#a87461' :
+				d == 5287   ? '#282197' :
+				d == 5288   ? '#3a68a5' :
+				d == 5289   ? '#8d2abc' :
+				d == 5290   ? '#dfc22b' :
+				d == 5291   ? '#fb2363' :
+				d == 5292   ? '#c775a7' :
+				d == 5293   ? '#04fa47' :
+				d == 5294   ? '#a52120' :
+				d == 5295   ? '#c68c0f' :
+				d == 5296   ? '#1112ea' :
+				d == 5316   ? '#d239ed' :
+				d == 5317   ? '#495c35' :
+				d == 5318   ? '#81e8ec' :
+				d == 5319   ? '#a6d697' :
+				d == 5320   ? '#d7d9cc' :
+				d == 5321   ? '#a06b63' :
+				d == 5322   ? '#511216' :
+				d == 5323   ? '#c9a984' :
+				d == 5324   ? '#f49056' :
+				d == 5325   ? '#b33b66' :
+				d == 5326   ? '#3020f7' :
+				d == 5327   ? '#fc615f' :
+				d == 5328   ? '#2c82cd' :
+				d == 5329   ? '#c1e71d' :
+				d == 5330   ? '#70ead8' :
+				d == 5331   ? '#8aabd7' :
+				d == 5332   ? '#4ec44b' :
+				d == 5333   ? '#0ad086' :
+				d == 5334   ? '#b33333' :
+				d == 5335   ? '#143ddf' :
+				d == 5336   ? '#4f35cf' :
+				d == 5337   ? '#a46496' :
+				d == 5338   ? '#d78266' :
+				d == 5345   ? '#ff5733' :
+				d == 5346   ? '#6de561' :
+				d == 5347   ? '#9a76a0' :
+				d == 5348   ? '#5ac34a' :
+				d == 5349   ? '#387bda' : 
+                d == 5350   ? '#129d88' :
+                d == 5351   ? '#9d2d87' :
+                d == 5352   ? '#48d389' :
+                d == 5353   ? '#7b8630' :
+                d == 5354   ? '#4a1fbb' :
+                d == 5355   ? '#ae7478' :
+                d == 5356   ? '#cbf6b8' :
+                d == 5358   ? '#70a2db' :
+                d == 5359   ? '#e5ad25' :
+                d == 5360   ? '#df943e' :
+                d == 5361   ? '#1b4e73' :
+                d == 5362   ? '#8fcb50' :
+                d == 5363   ? '#877e97' :
+                d == 5364   ? '#0c04bd' :
+                d == 5365   ? '#f98575' :
+                d == 5366   ? '#629913' :
+                d == 5367   ? '#203c31' :
+                d == 5368   ? '#91f94e' :
+                d == 5369   ? '#5d7d85' :
+                d == 5906   ? '#96454f' :
+							'#FFEDA0';
+	}
+
+	function style(feature) {
+		return {
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			dashArray: '3',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.arrond)
+		};
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+		layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+
+		info.update(layer.feature.properties);
+	}
+
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+
+
+	var layerGroup = L.geoJSON(statesData, {
+			style: style,
+				onEachFeature: onEachFeature,
+		  onEachFeature: function (feature, layer) {
+		    layer.bindPopup('<h1>'+feature.properties.ZP+'</h1><ul><li>Commune: '+feature.properties.Name+'</li><li>Code: '+feature.properties.arrond+'</li><li><a href=https://police.be/'+feature.properties.arrond+'>Site web</a></li>');
+		  }
+	}).addTo(map);
+	
+	map.attributionControl.addAttribution('Author &copy; <a href="https://nthill.be">nthill.be</a>');
+
+  </script>
+</body>
+
+</html>
